@@ -101,7 +101,7 @@ margin: 0 auto;
 padding: 28px 16px 40px;
 }
 .page-title {
-font-size: 28px; font-weight: 900; color: #000; letter-spacing: -0.3px; margin-bottom: 24px;
+font-size: 20px; font-weight: 900; color: #000; letter-spacing: -0.3px; margin-bottom: 24px;
 animation: fadeDown 0.5s ease 0.15s both;
 }
 
@@ -439,13 +439,12 @@ window.addEventListener("scroll", () => {
 
   </div>
 </div>
-```
 
   </div>
 
   <!-- Buy More -->
 
-<a href="index.html"><button class="btn-buy">BUY MORE</button></a>
+<a style="text-decoration: none;" href="index.html"><button class="btn-buy">BUY MORE</button></a>
 
   <!-- Note -->
 
@@ -453,178 +452,213 @@ window.addEventListener("scroll", () => {
     Note: Expired tickets are automatically removed after 24 hours from expiry.
   </p>
 </div>
+ <style>
+ 
 
 
-<style>
+  .bottom-nav {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 
-
-/* NAV BAR */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #dcdada;
+ .nav-wrap {
   display: flex;
-  justify-content: space-around;
-  padding: 15px 0;
-  box-shadow: 0 -5px 25px rgba(0,0,0,0.35);
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;;
-}
+  gap: 14px;
+  padding: 14px 20px;
+  border-radius: 35px;
 
-/* ITEM */
-.nav-item {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  /* stronger glass */
+  background: rgba(255, 255, 255, 0.25);
 
-/* BUTTON */
-.circle {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: white;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  /* thicker blur */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-}
+  /* stronger glass border */
+  border: 2px solid rgba(213, 206, 206, 0.5);
 
-/* ICON */
-.icon {
-  width: 24px;
-  height: 23px;
-  stroke: black;
-  fill: none;
-  stroke-width: 2;
-  transition: 0.3s;
+  /* depth shadow */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
+ 
 
-/* TEXT */
-.text {
-  font-size: 9px;
-  font-weight: 600;
-  color: #1f1f1f;
-  transition: 0.3s;
-}
+  /* BUTTON */
+  .nav-btn {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #fff;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.25s;
 
-/* ACTIVE */
-.nav-item.active .circle {
-  background: #5b2cff;
-  transform: translateY(-20px);
-  box-shadow: 0 14px 30px rgba(91,44,255,0.55);
-}
+    box-shadow: 0 5px 14px rgba(0,0,0,0.35);
+  }
 
-/* ACTIVE ICON */
-.nav-item.active .icon {
-  stroke: white;
-}
+  /* ICON */
+  .nav-btn svg {
+    width: 26px;
+    height: 26px;
+    stroke: #111;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    margin-bottom: 4px;
+    transition: 0.25s;
+  }
 
-/* ACTIVE TEXT */
-.nav-item.active .text {
-  color: white;
-}
+  /* TEXT */
+  .nav-btn span {
+    font-size: 11px;
+    font-weight: 500;
+    color: #333;
+  }
 
-/* BLANK BUTTON (important fix) */
-.blank .circle {
-  background: white;
-}
+  /* ACTIVE */
+  .nav-btn.active {
+    background: linear-gradient(135deg, #7b2ff7, #a855f7);
+    transform: translateY(-14px);
+    box-shadow: 0 12px 24px rgba(123, 47, 247, 0.8);
+  }
 
-/* CLICK */
-.circle:active {
-  transform: scale(0.95);
-}
+  .nav-btn.active svg {
+    stroke: #fff;
+  }
+
+  .nav-btn.active span {
+    color: #fff;
+  }
+
+  /* wheel spin */
+  .nav-btn.active .wheel {
+    animation: spin 0.6s ease;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(180deg); }
+  }
+
+  /* 📱 MOBILE */
+  @media (max-width: 480px) {
+    .nav-btn {
+      width: 51px;
+      height: 53px;
+    }
+
+    .nav-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .nav-btn span {
+      font-size: 10px;
+    }
+
+    .nav-wrap {
+      gap: 3px;
+      padding: 12px 14px;
+    }
+  }
+
 </style>
 </head>
 
 <body>
 
 <div class="bottom-nav">
+  <div class="nav-wrap">
 
-  <!-- ✅ BLANK BUTTON (NEW) -->
-  <div class="nav-item blank">
-    <button class="circle"></button>
+    <!-- 1 BLANK -->
+    <button class="nav-btn" onclick="setActive(this)"></button>
+
+    <!-- HOME -->
+   <a style="text-decoration: none;" href="index.html"> <button class="nav-btn active" onclick="setActive(this)">
+      <svg viewBox="0 0 24 24">
+        <path d="M4 10.5L12 4l8 6.5"></path>
+        <path d="M6 10v10h12V10"></path>
+      </svg>
+      <span>Home</span>
+    </button></a>
+
+    <!-- TICKET -->
+    <a style="text-decoration: none;" href="ticket.html"><button class="nav-btn" onclick="setActive(this)">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 9a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4V9z"></path>
+      </svg>
+      <span>Ticket</span>
+    </button></a>
+
+    <!-- DRAW -->
+    <a style="text-decoration: none;" href="draw.html"><button class="nav-btn" onclick="setActive(this)">
+      <svg class="wheel" viewBox="0 0 24 24">
+        <circle cx="12" cy="13" r="6"></circle>
+        <path d="M12 7v12"></path>
+        <path d="M6 13h12"></path>
+        <path d="M8.5 9l7 8"></path>
+        <path d="M15.5 9l-7 8"></path>
+        <circle cx="12" cy="13" r="1"></circle>
+        <path d="M12 3l1.5 2h-3z" fill="currentColor" stroke="none"></path>
+      </svg>
+      <span>Draws</span>
+    </button></a>
+
+    <!-- WALLET -->
+    <a style="text-decoration: none;" href="wallet.html"><button class="nav-btn" onclick="setActive(this)">
+      <svg viewBox="0 0 24 24">
+        <rect x="3" y="7" width="18" height="12" rx="3"></rect>
+        <path d="M15 12h4"></path>
+      </svg>
+      <span>Wallet</span>
+    </button></a>
+
+    <!-- CART -->
+    <a style="text-decoration: none;" href="cart.html"><button class="nav-btn" onclick="setActive(this)">
+      <svg viewBox="0 0 24 24">
+        <circle cx="9" cy="20" r="1.5"></circle>
+        <circle cx="17" cy="20" r="1.5"></circle>
+        <path d="M4 6h2l2 9h10l2-7H7"></path>
+      </svg>
+      <span>Cart</span>
+    </button></a>
+
   </div>
-
-  <!-- HOME -->
-  <a href="index.html"><div class="nav-item active">
-    <button class="circle">
-      <svg viewBox="0 0 24 24" class="icon">
-        <path d="M3 10.5L12 3l9 7.5V21H14v-6H10v6H4V10.5z"/>
-      </svg>
-      <div class="text">Home</div>
-    </button>
-  </div></a>
-
-  <!-- TICKET -->
-  <a href="ticket.html"><div class="nav-item">
-    <button class="circle">
-      <svg viewBox="0 0 24 24" class="icon">
-        <path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V8z"/>
-      </svg>
-      <div class="text">Ticket</div>
-    </button>
-  </div></a>
-
-  <!-- DRAW -->
-  <div class="nav-item">
-    <button class="circle">
-      <svg viewBox="0 0 24 24" class="icon">
-        <path d="M20 7H4v4h16V7z"/>
-        <path d="M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-        <path d="M12 7v14"/>
-      </svg>
-      <div class="text">Draw</div>
-    </button>
-  </div>
-
-  <!-- WALLET -->
-  <div class="nav-item">
-    <button class="circle">
-      <svg viewBox="0 0 24 24" class="icon">
-        <path d="M3 7h16a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H3V7z"/>
-        <path d="M16 12h6"/>
-        <circle cx="18" cy="12" r="1"/>
-      </svg>
-      <div class="text">Wallet</div>
-    </button>
-  </div>
-
-  <!-- CART -->
-  <div class="nav-item">
-    <button class="circle">
-      <svg viewBox="0 0 24 24" class="icon">
-        <path d="M6 6h15l-2 9H7L6 6z"/>
-        <path d="M6 6L5 3H2"/>
-        <circle cx="9" cy="20" r="1"/>
-        <circle cx="18" cy="20" r="1"/>
-      </svg>
-      <div class="text">Cart</div>
-    </button>
-  </div>
-
 </div>
 
 <script>
-const items = document.querySelectorAll(".nav-item");
 
-items.forEach(item => {
-  item.addEventListener("click", () => {
-    items.forEach(i => i.classList.remove("active"));
-    item.classList.add("active");
+ const path = window.location.pathname.split("/").pop();
+
+  const navButtons = document.querySelectorAll(".nav-btn");
+
+  navButtons.forEach(btn => {
+    const link = btn.closest("a");
+
+    if (!link) return;
+
+    const href = link.getAttribute("href");
+
+    if (href === path) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
   });
-});
 </script>
 </body>
 
-</html>
+  
+
+
+
+
+
 
