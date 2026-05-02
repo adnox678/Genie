@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart-Tixmo</title>
+</head>
+<body>
+  <style>
+ 
+
+
+  .bottom-nav {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+ .nav-wrap {
+  display: flex;
+  gap: 14px;
+  padding: 14px 20px;
+  border-radius: 35px;
+
+  /* stronger glass */
+  background: rgba(255, 255, 255, 0.25);
+
+  /* thicker blur */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  /* stronger glass border */
+  border: 2px solid rgba(213, 206, 206, 0.5);
+
+  /* depth shadow */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+ 
+
+  /* BUTTON */
+  .nav-btn {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #fff;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.25s;
+
+    box-shadow: 0 5px 14px rgba(0,0,0,0.35);
+  }
+
+  /* ICON */
+  .nav-btn svg {
+    width: 26px;
+    height: 26px;
+    stroke: #111;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    margin-bottom: 4px;
+    transition: 0.25s;
+  }
+
+  /* TEXT */
+  .nav-btn span {
+    font-size: 11px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  /* ACTIVE */
+  .nav-btn.active {
+    background: linear-gradient(135deg, #7b2ff7, #a855f7);
+    transform: translateY(-14px);
+    box-shadow: 0 12px 24px rgba(123, 47, 247, 0.8);
+  }
+
+  .nav-btn.active svg {
+    stroke: #fff;
+  }
+
+  .nav-btn.active span {
+    color: #fff;
+  }
+
+  /* wheel spin */
+  .nav-btn.active .wheel {
+    animation: spin 0.6s ease;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(180deg); }
+  }
+
+  /* 📱 MOBILE */
+  @media (max-width: 480px) {
+    .nav-btn {
+      width: 51px;
+      height: 53px;
+    }
+
+    .nav-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .nav-btn span {
+      font-size: 10px;
+    }
+
+    .nav-wrap {
+      gap: 3px;
+      padding: 12px 14px;
+    }
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="bottom-nav">
+  <div class="nav-wrap">
+
+    <!-- 1 BLANK -->
+    <button class="nav-btn" onclick="setActive(this)"></button>
+
+    <!-- HOME -->
+   <a style="text-decoration: none;" href="index.html"> <button class="nav-btn active" onclick="setActive(this)">
+      <svg viewBox="0 0 24 24">
+        <path d="M4 10.5L12 4l8 6.5"></path>
+        <path d="M6 10v10h12V10"></path>
+      </svg>
+      <span>Home</span>
+    </button></a>
+
+    <!-- TICKET -->
+    <a style="text-decoration: none;" href="ticket.html"><button class="nav-btn" onclick="setActive(this)">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 9a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4V9z"></path>
+      </svg>
+      <span>Ticket</span>
+    </button></a>
+
+    <!-- DRAW -->
+    <a style="text-decoration: none;" href="draw.html"><button class="nav-btn" onclick="setActive(this)">
+      <svg class="wheel" viewBox="0 0 24 24">
+        <circle cx="12" cy="13" r="6"></circle>
+        <path d="M12 7v12"></path>
+        <path d="M6 13h12"></path>
+        <path d="M8.5 9l7 8"></path>
+        <path d="M15.5 9l-7 8"></path>
+        <circle cx="12" cy="13" r="1"></circle>
+        <path d="M12 3l1.5 2h-3z" fill="currentColor" stroke="none"></path>
+      </svg>
+      <span>Draws</span>
+    </button></a>
+
+    <!-- WALLET -->
+    <a style="text-decoration: none;" href="wallet.html"><button class="nav-btn" onclick="setActive(this)">
+      <svg viewBox="0 0 24 24">
+        <rect x="3" y="7" width="18" height="12" rx="3"></rect>
+        <path d="M15 12h4"></path>
+      </svg>
+      <span>Wallet</span>
+    </button></a>
+
+    <!-- CART -->
+    <a style="text-decoration: none;" href="cart.html"><button class="nav-btn" onclick="setActive(this)">
+      <svg viewBox="0 0 24 24">
+        <circle cx="9" cy="20" r="1.5"></circle>
+        <circle cx="17" cy="20" r="1.5"></circle>
+        <path d="M4 6h2l2 9h10l2-7H7"></path>
+      </svg>
+      <span>Cart</span>
+    </button></a>
+
+  </div>
+</div>
+
+<script>
+ const path = window.location.pathname.split("/").pop();
+
+  const navButtons = document.querySelectorAll(".nav-btn");
+
+  navButtons.forEach(btn => {
+    const link = btn.closest("a");
+
+    if (!link) return;
+
+    const href = link.getAttribute("href");
+
+    if (href === path) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+</script>
+<header class="header transparent" id="header">
+  <div class="logo"><img style="display: flex;
+         width: 80px;
+  height: 80px;" src="IMG_2273-removebg-preview.png" alt=""></div>
+
+  <div style="gap:12px" class="right">
+   <div style="display:flex; flex-direction:column; align-items:flex-end; line-height:1;">
+      <span style="font-size:10px; opacity:0.7; margin-bottom:2px;">
+        Wallet Balance
+      </span>
+      <span style="font-size:16px;  font-weight:bold;">
+        ₹0.00
+      </span>
+    </div>
+
+    <button class="menu-btn">☰</button>
+  </div>
+</header>
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 2000px; /* for scroll demo */
+}
+
+/* HEADER BASE */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 8px ;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  border-bottom-left-radius: 20px;
+   border-bottom-right-radius: 20px;
+}
+
+/* TRANSPARENT (initial) */
+.header.transparent {
+  background: transparent;
+  color: white;
+}
+
+/* SCROLLED (white background) */
+.header.scrolled {
+
+  background: white;
+  color: black;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* LEFT LOGO */
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* RIGHT SIDE */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #130800;
+}
+
+/* WALLET */
+.wallet {
+  font-weight: bold;
+}
+
+/* MENU BUTTON */
+.menu-btn {
+  font-size: 30px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  margin: right ;
+  color: black;
+  border-radius: px;
+ 
+
+}
+
+</style>
+<script>
+const header = document.getElementById("header");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 50) {
+    header.classList.remove("transparent");
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+    header.classList.add("transparent");
+  }
+});
+</script>
+</body>
+</html>
