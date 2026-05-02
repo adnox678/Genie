@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Tickets – Tixmo </title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: #ebebeb;
+font-family: -apple-system, BlinkMacSystemFont, ‘SF Pro Display’, ‘Helvetica Neue’, sans-serif;
+min-height: 100vh;
+}
+
+/* ── KEYFRAMES ── */
+@keyframes fadeDown {
+from { opacity: 0; transform: translateY(-18px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(24px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes cardReveal {
+0%   { opacity: 0; transform: translateY(40px) scale(0.93) rotateX(6deg); }
+100% { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); }
+}
+@keyframes ticketFloat {
+0%,100% { transform: translateY(0);    filter: drop-shadow(0 8px 28px rgba(82,36,200,0.28)); }
+50%      { transform: translateY(-6px); filter: drop-shadow(0 18px 40px rgba(82,36,200,0.42)); }
+}
+@keyframes gradShift {
+0%,100% { background-position: 0% 50%; }
+50%      { background-position: 100% 50%; }
+}
+@keyframes shimmer {
+0%   { transform: translateX(-100%) skewX(-12deg); }
+100% { transform: translateX(380%)  skewX(-12deg); }
+}
+@keyframes blobPulse {
+0%,100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 55%; transform: scale(1); }
+50%      { border-radius: 45% 55% 40% 60% / 60% 45% 55% 40%; transform: scale(1.05); }
+}
+@keyframes starSpin {
+from { transform: rotate(0deg) scale(1); }
+to   { transform: rotate(360deg) scale(1); }
+}
+@keyframes starPop {
+0%   { opacity: 0; transform: scale(0); }
+60%  { transform: scale(1.2); }
+100% { opacity: 1; transform: scale(1); }
+}
+@keyframes numberReveal {
+from { opacity: 0; letter-spacing: 6px; filter: blur(4px); }
+to   { opacity: 1; letter-spacing: 0.3px; filter: blur(0); }
+}
+@keyframes btnPulse {
+0%,100% { box-shadow: 0 0 0 0 rgba(82,54,200,0.5); }
+50%      { box-shadow: 0 0 0 12px rgba(82,54,200,0); }
+}
+@keyframes btnShimmer {
+0%   { transform: translateX(-100%) skewX(-15deg); }
+100% { transform: translateX(380%)  skewX(-15deg); }
+}
+@keyframes amountGlow {
+0%,100% { text-shadow: 0 0 8px rgba(255,220,80,0.4); }
+50%      { text-shadow: 0 0 20px rgba(255,220,80,0.9), 0 0 40px rgba(255,180,40,0.5); }
+}
+@keyframes ribbonSlide {
+from { opacity: 0; transform: translateX(30px); }
+to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── HEADER ── */
+.header {
+background: #fff;
+padding: 16px 20px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+border-bottom: 1px solid #eee;
+animation: fadeDown 0.5s ease both;
+}
+.logo-wrap { display: flex; align-items: center; gap: 8px; }
+.logo-icon { width: 36px; height: 36px; }
+.logo-icon svg { width: 100%; height: 100%; }
+.logo-text-wrap { display: flex; flex-direction: column; line-height: 1.05; }
+.logo-dream { font-size: 15px; font-weight: 900; color: #111; letter-spacing: 1.5px; }
+.logo-dubai { font-size: 15px; font-weight: 900; color: #111; letter-spacing: 1.5px; }
+.hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2.5px; background: #111; border-radius: 2px; transition: transform 0.3s; }
+.hamburger:hover span:nth-child(1) { transform: scaleX(0.7); }
+.hamburger:hover span:nth-child(3) { transform: scaleX(0.7); }
+
+/* ── SCREEN ── */
+.screen {
+max-width: 420px;
+margin: 0 auto;
+padding: 28px 16px 40px;
+}
+.page-title {
+font-size: 28px; font-weight: 900; color: #000; letter-spacing: -0.3px; margin-bottom: 24px;
+animation: fadeDown 0.5s ease 0.15s both;
+}
+
+/* ── TICKET CARD ── */
+.ticket-wrapper {
+margin-bottom: 24px;
+animation: cardReveal 0.8s cubic-bezier(0.22,1,0.36,1) 0.25s both,
+ticketFloat 4.5s ease-in-out 1.4s infinite;
+perspective: 800px;
+}
+
+.ticket-card {
+border-radius: 18px;
+overflow: hidden;
+position: relative;
+background: linear-gradient(140deg, #1c0e5e, #2e1580, #4a1ea0, #3a1488, #1c0e5e);
+background-size: 300% 300%;
+animation: gradShift 7s ease infinite;
+}
+
+/* Shimmer */
+.ticket-card .shimmer-layer {
+position: absolute; inset: 0; z-index: 6; pointer-events: none; overflow: hidden; border-radius: 22px;
+}
+.ticket-card .shimmer-layer::after {
+content: ‘’;
+position: absolute; top: -50%; left: 0;
+width: 30%; height: 200%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+animation: shimmer 4s ease-in-out 1.8s infinite;
+}
+
+/* Blob bg decoration */
+.ticket-card .blob {
+position: absolute;
+border-radius: 60% 40% 55% 45% / 50% 60% 40% 55%;
+animation: blobPulse 5s ease-in-out infinite;
+pointer-events: none;
+}
+.blob-1 {
+width: 200px; height: 180px;
+background: radial-gradient(circle, rgba(200,80,200,0.5), rgba(120,20,180,0.2));
+top: -40px; right: -30px;
+animation-delay: 0s;
+}
+.blob-2 {
+width: 140px; height: 130px;
+background: radial-gradient(circle, rgba(255,160,50,0.25), transparent 70%);
+bottom: 10px; left: 10px;
+animation-delay: 2s;
+}
+
+/* ── TICKET TOP SECTION ── */
+.ticket-top {
+padding: 16px 18px 0;
+position: relative; z-index: 3;
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+gap: 12px;
+}
+
+/* Prize badge thumbnail */
+.prize-badge {
+width: 68px; height: 68px;
+border-radius: 12px;
+background: linear-gradient(145deg, #0d0a28, #1a1050);
+border: 2px solid rgba(255,220,80,0.35);
+display: flex; flex-direction: column;
+align-items: center; justify-content: center;
+flex-shrink: 0;
+position: relative;
+overflow: hidden;
+animation: starPop 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.8s both;
+box-shadow: 0 0 0 1px rgba(255,220,80,0.2), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.prize-badge::before {
+content: ‘’;
+position: absolute; inset: -8px;
+background: radial-gradient(circle at 50% 50%, rgba(255,200,60,0.3), transparent 65%);
+animation: blobPulse 3s ease-in-out infinite;
+}
+.prize-icon { font-size: 22px; position: relative; z-index: 1; animation: starSpin 8s linear infinite; }
+.prize-badge-text {
+font-size: 8px; font-weight: 900; color: #f5c842;
+letter-spacing: 0.5px; text-align: center;
+position: relative; z-index: 1; line-height: 1.3;
+margin-top: 3px;
+}
+
+/* Right info on top */
+.ticket-meta-right { flex: 1; text-align: right; padding-top: 4px; }
+.ticket-no {
+font-size: 11.5px; font-weight: 800; color: rgba(255,255,255,0.95);
+animation: numberReveal 0.7s ease 1s both;
+line-height: 1.4;
+}
+.ticket-issued {
+font-size: 11px; color: rgba(255,255,255,0.5);
+margin-top: 5px; line-height: 1.4;
+}
+
+/* ── DIVIDER ── */
+.ticket-divider {
+display: flex; align-items: center; gap: 0;
+margin: 14px 0 0;
+position: relative; z-index: 3;
+}
+.divider-notch {
+width: 18px; height: 18px; border-radius: 50%;
+background: #ebebeb; flex-shrink: 0;
+}
+.divider-line {
+flex: 1;
+border-top: 2px dashed rgba(255,255,255,0.15);
+}
+
+/* ── TICKET BOTTOM SECTION ── */
+.ticket-bottom {
+padding: 14px 18px 18px;
+position: relative; z-index: 3;
+}
+
+.prize-amount {
+font-size: 22px; font-weight: 900; color: #fff;
+letter-spacing: -0.5px;
+animation: fadeUp 0.5s ease 0.9s both, amountGlow 3s ease-in-out 2s infinite;
+line-height: 1.1;
+}
+.prize-currency {
+font-size: 12px; font-weight: 700; color: rgba(255,220,80,0.85);
+margin-bottom: 4px;
+animation: fadeUp 0.5s ease 0.85s both;
+}
+
+.ticket-details {
+margin-top: 12px;
+display: grid; grid-template-columns: 1fr 1fr;
+gap: 10px;
+animation: fadeUp 0.5s ease 1.05s both;
+}
+.detail-item { }
+.detail-label { font-size: 9px; color: rgba(255,255,255,0.45); font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 2px; }
+.detail-value { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.9); }
+
+/* ── BUY MORE ── */
+.btn-buy {
+display: block; width: 100%;
+background: linear-gradient(135deg, #5236c8, #3a22a0);
+color: #fff;
+font-size: 15px; font-weight: 800; letter-spacing: 1.5px;
+text-transform: uppercase;
+border: none; border-radius: 50px;
+padding: 18px;
+cursor: pointer;
+position: relative; overflow: hidden;
+margin-bottom: 28px;
+animation: fadeUp 0.5s ease 1.2s both, btnPulse 2.5s ease-in-out 2.2s infinite;
+transition: transform 0.18s ease, filter 0.18s ease;
+}
+.btn-buy::after {
+content: ‘’;
+position: absolute; top: -50%; left: 0;
+width: 28%; height: 200%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+animation: btnShimmer 2.8s ease-in-out 2.2s infinite;
+}
+.btn-buy:active { transform: scale(0.97); filter: brightness(0.88); }
+
+/* ── NOTE ── */
+.note-text {
+font-size: 13px; color: #aaa;
+text-align: center; line-height: 1.6; padding: 0 10px;
+animation: fadeUp 0.5s ease 1.35s both;
+}
+</style>
+
+
+
+<body>
+
+<!-- HEADER -->
+<header class="header transparent" id="header">
+  <div class="logo"><img style="display: flex;
+         width: 80px;
+  height: 80px;" src="IMG_2273-removebg-preview.png" alt=""></div>
+
+  <div style="gap:12px" class="right">
+   <div style="display:flex; flex-direction:column; align-items:flex-end; line-height:1;">
+      <span style="font-size:10px; opacity:0.7; margin-bottom:2px;">
+        Wallet Balance
+      </span>
+      <span style="font-size:16px;  font-weight:bold;">
+        ₹0.00
+      </span>
+    </div>
+
+    <button class="menu-btn">☰</button>
+  </div>
+</header>
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 2000px; /* for scroll demo */
+}
+
+/* HEADER BASE */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 8px ;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  border-bottom-left-radius: 20px;
+   border-bottom-right-radius: 20px;
+}
+
+/* TRANSPARENT (initial) */
+.header.transparent {
+  background: transparent;
+  color: white;
+}
+
+/* SCROLLED (white background) */
+.header.scrolled {
+
+  background: white;
+  color: black;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* LEFT LOGO */
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* RIGHT SIDE */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #130800;
+}
+
+/* WALLET */
+.wallet {
+  font-weight: bold;
+}
+
+/* MENU BUTTON */
+.menu-btn {
+  font-size: 30px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  margin: right ;
+  color: black;
+  border-radius: px;
+ 
+
+}
+
+</style>
+<script>
+const header = document.getElementById("header");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 50) {
+    header.classList.remove("transparent");
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+    header.classList.add("transparent");
+  }
+});
+</script>
+
+<!-- Screen -->
+<br><br> <br><br><br>
+<div class="screen">
+  <div class="page-title">TICKETS</div>
+
+  <!-- Ticket -->
+
+  <div class="ticket-wrapper">
+    <div class="ticket-card">
+      <div class="shimmer-layer"></div>
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+
+```
+  <!-- Top -->
+  <div class="ticket-top">
+    <div class="prize-badge">
+      <div class="prize-icon">💰</div>
+      <div class="prize-badge-text">₿10M<br>PRIZE</div>
+    </div>
+    <div class="ticket-meta-right">
+      <div class="ticket-no">DC-00646-138936131</div>
+      <div class="ticket-issued">Issued: Oct 26, 2025 · 10:54 PM</div>
+
+    </div>
+  </div>
+
+  <!-- Dashed divider with notches -->
+  <div class="ticket-divider">
+    <div class="divider-notch"></div>
+    <div class="divider-line"></div>
+    <div class="divider-notch"></div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="ticket-bottom">
+    <div class="prize-currency">Win · Bitcoin Cash Prize</div>
+    <div class="prize-amount">₿10,000,000</div>
+
+    <div class="ticket-details">
+      <div class="detail-item">
+        <div class="detail-label">Campaign</div>
+        <div class="detail-value">DC-00646</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Draw Date</div>
+        <div class="detail-value">10 May 2026</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- Buy More -->
+
+<a href="index.html"><button class="btn-buy">BUY MORE</button></a>
+
+  <!-- Note -->
+
+  <p class="note-text">
+    Note: Expired tickets are automatically removed after 24 hours from expiry.
+  </p>
+</div>
+
+
+<style>
+
+
+/* NAV BAR */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #dcdada;
+  display: flex;
+  justify-content: space-around;
+  padding: 15px 0;
+  box-shadow: 0 -5px 25px rgba(0,0,0,0.35);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;;
+}
+
+/* ITEM */
+.nav-item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* BUTTON */
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+/* ICON */
+.icon {
+  width: 24px;
+  height: 23px;
+  stroke: black;
+  fill: none;
+  stroke-width: 2;
+  transition: 0.3s;
+}
+
+/* TEXT */
+.text {
+  font-size: 9px;
+  font-weight: 600;
+  color: #1f1f1f;
+  transition: 0.3s;
+}
+
+/* ACTIVE */
+.nav-item.active .circle {
+  background: #5b2cff;
+  transform: translateY(-20px);
+  box-shadow: 0 14px 30px rgba(91,44,255,0.55);
+}
+
+/* ACTIVE ICON */
+.nav-item.active .icon {
+  stroke: white;
+}
+
+/* ACTIVE TEXT */
+.nav-item.active .text {
+  color: white;
+}
+
+/* BLANK BUTTON (important fix) */
+.blank .circle {
+  background: white;
+}
+
+/* CLICK */
+.circle:active {
+  transform: scale(0.95);
+}
+</style>
+</head>
+
+<body>
+
+<div class="bottom-nav">
+
+  <!-- ✅ BLANK BUTTON (NEW) -->
+  <div class="nav-item blank">
+    <button class="circle"></button>
+  </div>
+
+  <!-- HOME -->
+  <a href="index.html"><div class="nav-item active">
+    <button class="circle">
+      <svg viewBox="0 0 24 24" class="icon">
+        <path d="M3 10.5L12 3l9 7.5V21H14v-6H10v6H4V10.5z"/>
+      </svg>
+      <div class="text">Home</div>
+    </button>
+  </div></a>
+
+  <!-- TICKET -->
+  <a href="ticket.html"><div class="nav-item">
+    <button class="circle">
+      <svg viewBox="0 0 24 24" class="icon">
+        <path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V8z"/>
+      </svg>
+      <div class="text">Ticket</div>
+    </button>
+  </div></a>
+
+  <!-- DRAW -->
+  <div class="nav-item">
+    <button class="circle">
+      <svg viewBox="0 0 24 24" class="icon">
+        <path d="M20 7H4v4h16V7z"/>
+        <path d="M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+        <path d="M12 7v14"/>
+      </svg>
+      <div class="text">Draw</div>
+    </button>
+  </div>
+
+  <!-- WALLET -->
+  <div class="nav-item">
+    <button class="circle">
+      <svg viewBox="0 0 24 24" class="icon">
+        <path d="M3 7h16a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H3V7z"/>
+        <path d="M16 12h6"/>
+        <circle cx="18" cy="12" r="1"/>
+      </svg>
+      <div class="text">Wallet</div>
+    </button>
+  </div>
+
+  <!-- CART -->
+  <div class="nav-item">
+    <button class="circle">
+      <svg viewBox="0 0 24 24" class="icon">
+        <path d="M6 6h15l-2 9H7L6 6z"/>
+        <path d="M6 6L5 3H2"/>
+        <circle cx="9" cy="20" r="1"/>
+        <circle cx="18" cy="20" r="1"/>
+      </svg>
+      <div class="text">Cart</div>
+    </button>
+  </div>
+
+</div>
+
+<script>
+const items = document.querySelectorAll(".nav-item");
+
+items.forEach(item => {
+  item.addEventListener("click", () => {
+    items.forEach(i => i.classList.remove("active"));
+    item.classList.add("active");
+  });
+});
+</script>
+</body>
+
+</html>
+
