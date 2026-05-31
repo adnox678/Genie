@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top-up with Card</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= BASE ================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#e8e8e8;
+overflow:hidden;
+position:relative;
+padding:20px;
+}
+
+
+
+/* ================= CARD ================= */
+
+.card{
+width:100%;
+max-width:430px;
+padding:34px;
+border-radius:36px;
+background:linear-gradient(135deg,#1a0055,#4316a7,#8b2cff);
+color:white;
+box-shadow:0 30px 60px rgba(83,0,255,.25);
+position:relative;
+overflow:hidden;
+text-align: center;
+}
+.card:hover{
+transform:translateY(-2px) scale(1.03);
+ box-shadow: 0 10px 50px rgba(59, 6, 146, 0.6);
+}
+
+/* floating light circle */
+.card::before{
+content:"";
+position:absolute;
+width:240px;
+height:240px;
+background:rgba(255,255,255,.06);
+border-radius:50%;
+top:-100px;
+right:-100px;
+}
+/* BACK BUTTON */
+
+.back{
+position:absolute;
+top:20px;
+left:20px;
+width:45px;
+height:45px;
+border:none;
+border-radius:12px;
+background:#fff;
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+cursor:pointer;
+}
+
+/* TITLE */
+
+.title{
+font-size:22px;
+font-weight:700;
+margin-top:10px;
+}
+
+.subtitle{
+font-size:13px;
+color:#c0afaf;
+margin-bottom:15px;
+}
+
+/* ================= INPUTS ================= */
+
+.group{
+margin-bottom:12px;
+}
+
+label{
+font-size:12px;
+color:#c0afaf;
+display:block;
+margin-bottom:5px;
+}
+
+input{
+width:100%;
+padding:14px;
+border-radius:12px;
+border:3px solid #f00c77;
+background:#f9fafc;
+outline:none;
+transition:.3s;
+font-size:14px;
+}
+
+/* ACTIVE GREEN STATE */
+input:hover{
+border:3px solid #00c853;
+color:#178947;
+font-weight:700;
+box-shadow:0 0 12px rgba(0,200,83,.2);
+}
+
+/* ================= ROW ================= */
+
+.row{
+display:flex;
+gap:10px;
+}
+
+/* ================= LOGOS ================= */
+
+.logos{
+display:flex;
+gap:10px;
+margin-top:12px;
+}
+
+.logo{
+flex:1;
+padding:10px;
+text-align:center;
+background:#f1f3f7;
+border-radius:10px;
+font-size:12px;
+color:#9f9292;
+}
+
+/* ================= BUTTON ================= */
+
+.pay{
+width:100%;
+margin-top:6px;
+padding:15px;
+border:none;
+border-radius:14px;
+background:linear-gradient(90deg,#ff0059,#d73890);
+color:#260052;
+font-weight:700;
+cursor:pointer;
+}
+
+.pay:hover{
+border:3px solid #00c853;
+}
+
+/* ================= CALENDAR ================= */
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.25);
+display:none;
+}
+
+.calendar{
+position:fixed;
+bottom:-400px;
+left:50%;
+transform:translateX(-50%);
+width:320px;
+background:#fff;
+border-radius:18px;
+padding:16px;
+transition:.4s;
+}
+
+.calendar.show{
+bottom:30px;
+}
+
+select{
+width:100%;
+padding:10px;
+margin:6px 0;
+border-radius:10px;
+border:1px solid #ddd;
+}
+
+</style>
+</head>
+
+<body>
+
+
+<div class="card">
+<br>
+<button class="back" onclick="history.back()"><b>←</b></button>
+
+<div class="title">Top-up with Card</div>
+<div class="subtitle">Secure payment processing system</div>
+
+<div class="group">
+<label>Card Number</label>
+<input id="card" maxlength="19" type="text" placeholder="XXXX XXXX XXXX XXXX">
+</div>
+
+<div class="group">
+<label>Card Holder</label>
+<input type="text" placeholder="Full Name">
+</div>
+
+<div class="row">
+
+<div class="group">
+<label>Expiry</label>
+<input id="exp" type="text" readonly placeholder="MM/YY" onclick="openCal()">
+</div>
+
+<div class="group">
+<label>CVV</label>
+<input maxlength="3" type="password" placeholder="***">
+</div>
+
+</div>
+
+<button class="pay">Pay Now</button>
+
+<!-- LOGOS UNDER DIV -->
+<div class="logos">
+<div class="logo">VISA</div>
+<div class="logo">MASTER</div>
+<div class="logo">AMEX</div>
+</div>
+
+</div>
+
+<!-- CALENDAR -->
+<div class="overlay" id="overlay" onclick="closeCal()"></div>
+
+<div class="calendar" id="calendar">
+
+<h4>Select Expiry</h4><br>
+<h6 style="color: grey;">Month</h6>
+<select id="month">
+<option>01 (January)</option><option>02 (February)</option><option>03 (March)</option>
+<option>04 (April)</option><option>05 (May)</option><option>06 (June)</option>
+<option>07 (July)</option><option>08 (August)</option><option>09 (September)</option>
+<option>10 (October)</option><option>11 (November)</option><option>12 (December)</option>
+</select>
+<h6 style="color: grey;">Year</h6>
+<select id="year">
+<script>
+for(let i=2025;i<=2040;i++){
+document.write(`<option>${i}</option>`);
+}
+</script>
+</select>
+
+<button style=" color: #00c853; margin: 10px; border: 2px solid  #00c853; border-radius: 6px;
+padding: 10px 28px;" onclick="set()"><b>Confirm</b></button>
+
+</div>
+
+<script>
+
+/* ONLY NUMBERS + GREEN */
+const card=document.getElementById("card");
+
+card.addEventListener("input",()=>{
+card.value=card.value.replace(/\D/g,"");
+
+if(card.value.length>0){
+card.classList.add("active");
+}else{
+card.classList.remove("active");
+}
+});
+const cardInput = document.getElementById("card");
+
+cardInput.addEventListener("input", function (e) {
+  let value = e.target.value.replace(/\D/g, ""); // digits only
+  value = value.match(/.{1,4}/g)?.join(" ") || "";
+  e.target.value = value;
+});
+/* CALENDAR */
+function openCal(){
+document.getElementById("calendar").classList.add("show");
+document.getElementById("overlay").style.display="block";
+}
+
+function closeCal(){
+document.getElementById("calendar").classList.remove("show");
+document.getElementById("overlay").style.display="none";
+}
+
+function set(){
+let m=document.getElementById("month").value;
+let y=document.getElementById("year").value;
+document.getElementById("exp").value=m+"/"+y;
+closeCal();
+}
+
+</script>
+
+</body>
+</html>
