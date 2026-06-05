@@ -76,14 +76,16 @@ transition:.3s;
 
 .back-btn:hover{
 transform:scale(1.1);
+background-color: #ff0059;
 }
+
 
 /* ================= CARD ================= */
 
 .card{
 width:100%;
-max-width:430px;
-padding:34px;
+max-width:450px;
+padding: 30px;
 border-radius:36px;
 background:linear-gradient(135deg,#1a0055,#4316a7,#8b2cff);
 color:white;
@@ -139,6 +141,7 @@ color:rgb(255, 255, 255);
 font-size:16px;
 font-weight:500;
 transition:.35s;
+
 }
 
 .input-group input:focus,
@@ -149,6 +152,8 @@ border:3px solid #00ff88;
 color:#218657;
 font-weight:700;
 box-shadow:0 0 25px rgba(0, 0, 0, 0.35);
+  text-transform: uppercase;
+
 }
 
 /* ================= BUTTON ================= */
@@ -282,7 +287,7 @@ cursor:pointer;
 </head>
 
 <body>
-
+<div class="screen"> 
 <!-- BACKGROUND BLOBS -->
 <div class="blob blob1"></div>
 <div class="blob blob2"></div>
@@ -291,15 +296,21 @@ cursor:pointer;
 
 <!-- BACK BUTTON BLOBS -->
 <div class="back-blob"></div>
-<button class="back-btn" onclick="goBack()"><b>←</b></button>
+<button class="back-btn" onclick="goBack()">
+  <svg width="20" height="20" viewBox="0 0 24 24">
+    <path
+      fill="currentColor"
+      d="M14.7 5.3a1 1 0 0 1 0 1.4L10.41 11H20a1 1 0 1 1 0 2h-9.59l4.3 4.3a1 1 0 1 1-1.42 1.4l-6-6a1 1 0 0 1 0-1.4l6-6a1 1 0 0 1 1.41 0z"
+    />
+  </svg>
+</button>
 
 <div class="logo"></div>
 
 <h1>Redeem Voucher</h1>
 <p class="subtitle">Enter code to credit wallet instantly</p>
-<h5 style=" color: tomato;  margin-bottom: 6px;">Capitel Letter Only (A-Z) </h5>
 <div class="input-group">
-<input id="voucher" type="text" placeholder="Enter Voucher Code">
+<input id="voucher" maxlength="10" type="text" placeholder="Enter Voucher Code">
 </div>
 
 <button class="redeem-btn" onclick="redeem()"> Redeem Voucher</button>
@@ -314,12 +325,6 @@ cursor:pointer;
 
 </div>
 
-<!-- POPUP -->
-<div class="popup" id="popup">
-<div class="tick">✅</div>
-<h2>Success</h2>
-<p>Voucher applied successfully</p>
-<button onclick="closePopup()">OK</button>
 </div>
 
 <script>
@@ -327,16 +332,6 @@ cursor:pointer;
 function goBack(){
 history.back();
 }
-const input = document.getElementById("voucher");
-
-input.addEventListener("keypress", function(e) {
-  const char = e.key;
-
-  if (/[a-z]/.test(char)) {
-    e.preventDefault();
-    alert("Capital letters only!");
-  }
-});
 
 function redeem(){
 let v=document.getElementById("voucher").value.trim();
