@@ -7,10 +7,75 @@
 </head>
 <body>
 
+<style>
+  .body1 {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #e8e8e8;
+    font-family: Arial, sans-serif;
+  }
+
+  .empty-cart {
+    text-align: center;
+    color: #000;
+  }
+
+  .bag-icon {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    margin: 0 0 8px;
+    font-size: 24px;
+  }
+
+  p {
+    margin: 0;
+    color: #555;
+  }
+</style>
+</head>
+<div class="body1">
+
+<div class="empty-cart">
+  <svg
+    class="bag-icon"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M7 8V6C7 3.79 8.79 2 11 2H13C15.21 2 17 3.79 17 6V8H20L18.5 22H5.5L4 8H7ZM9 8H15V6C15 4.9 14.1 4 13 4H11C9.9 4 9 4.9 9 6V8Z"
+      fill="#000000"
+    />
+  </svg>
+
+  <h2>Your Cart is Empty</h2>
+  <p>Add items to start shopping.</p>
+</div>
+
+</div>
+</html>
 
 
 
 <style>
+ body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color:#e8e8e8 ;
+
+}
+
+
+ 
+
+
   .bottom-nav {
     position: fixed;
     bottom: 20px;
@@ -21,9 +86,9 @@
 
  .nav-wrap {
   display: flex;
-  gap: 14px;
-  padding: 14px 20px;
-  border-radius: 35px;
+  gap:1%;
+  padding: 0.7% 4%;
+  border-radius: 20px;
 
   /* stronger glass */
   background: rgba(255, 255, 255, 0.25);
@@ -33,7 +98,7 @@
   -webkit-backdrop-filter: blur(20px);
 
   /* stronger glass border */
-  border: 2px solid rgba(213, 206, 206, 0.5);
+  border: 3px solid rgba(213, 206, 206, 0.5);
 
   /* depth shadow */
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
@@ -42,8 +107,8 @@
 
   /* BUTTON */
   .nav-btn {
-    width: 72px;
-    height: 72px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: #fff;
     border: none;
@@ -54,13 +119,13 @@
     cursor: pointer;
     transition: 0.25s;
 
-    box-shadow: 0 5px 14px rgba(0,0,0,0.35);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.35);
   }
 
   /* ICON */
   .nav-btn svg {
-    width: 26px;
-    height: 26px;
+    width: 20px;
+    height: 20px;
     stroke: #111;
     fill: none;
     stroke-width: 2;
@@ -72,7 +137,7 @@
 
   /* TEXT */
   .nav-btn span {
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 500;
     color: #333;
   }
@@ -103,7 +168,7 @@
   }
 
   /* 📱 MOBILE */
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
     .nav-btn {
       width: 51px;
       height: 53px;
@@ -137,7 +202,6 @@
     <img style="height: 30px;" src="https://prod-img.thesouledstore.com/static/non-member-logo2.gif?w=100&dpr=2" alt="">
   </button>
    </a>
-
     <!-- HOME -->
    <a style="text-decoration: none;" href="index.html"> <button class="nav-btn active" onclick="setActive(this)">
       <svg viewBox="0 0 24 24">
@@ -210,6 +274,8 @@
     }
   });
 </script>
+
+</body>
 <header class="header transparent" id="header">
   <div class="logo"><img style="display: flex;
          width: 80px;
@@ -228,6 +294,9 @@
     <button class="menu-btn">☰</button>
   </div>
 </header>
+
+
+
 <style>
 
 body {
