@@ -30,6 +30,9 @@ padding:20px;
 }
 
 
+.screen{
+  max-width: 400px;
+}
 
 /* ================= CARD ================= */
 
@@ -74,6 +77,12 @@ border-radius:12px;
 background:#fff;
 box-shadow:0 10px 20px rgba(0,0,0,.08);
 cursor:pointer;
+text-align: center;
+
+}
+.back:hover{
+  background-color: #ff0059;
+  color:  white;
 }
 
 /* TITLE */
@@ -200,13 +209,20 @@ border:1px solid #ddd;
 
 </style>
 </head>
-
+ <div class="screen">
 <body>
 
 
 <div class="card">
 <br>
-<button class="back" onclick="history.back()"><b>←</b></button>
+<button class="back" onclick="history.back()">
+ <svg width="20" height="20" viewBox="0 0 24 24">
+    <path
+      fill="currentColor"
+      d="M14.7 5.3a1 1 0 0 1 0 1.4L10.41 11H20a1 1 0 1 1 0 2h-9.59l4.3 4.3a1 1 0 1 1-1.42 1.4l-6-6a1 1 0 0 1 0-1.4l6-6a1 1 0 0 1 1.41 0z"
+    />
+  </svg>
+</button>
 
 <div class="title">Top-up with Card</div>
 <div class="subtitle">Secure payment processing system</div>
@@ -272,7 +288,7 @@ document.write(`<option>${i}</option>`);
 padding: 10px 28px;" onclick="set()"><b>Confirm</b></button>
 
 </div>
-
+</div>
 <script>
 
 /* ONLY NUMBERS + GREEN */
