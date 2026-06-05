@@ -98,7 +98,8 @@ animation: fadeDown 0.5s ease both;
 .screen {
 max-width: 420px;
 margin: 0 auto;
-padding: 28px 16px 40px;
+padding: 24px 16px 7%;
+margin-top: -3%;
 }
 .page-title {
 font-size: 20px; font-weight: 900; color: #000; letter-spacing: -0.3px; margin-bottom: 24px;
@@ -164,33 +165,8 @@ justify-content: space-between;
 gap: 12px;
 }
 
-/* Prize badge thumbnail */
-.prize-badge {
-width: 68px; height: 68px;
-border-radius: 12px;
-background: linear-gradient(145deg, #0d0a28, #1a1050);
-border: 2px solid rgba(255,220,80,0.35);
-display: flex; flex-direction: column;
-align-items: center; justify-content: center;
-flex-shrink: 0;
-position: relative;
-overflow: hidden;
-animation: starPop 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.8s both;
-box-shadow: 0 0 0 1px rgba(255,220,80,0.2), inset 0 1px 0 rgba(255,255,255,0.08);
-}
-.prize-badge::before {
-content: ‘’;
-position: absolute; inset: -8px;
-background: radial-gradient(circle at 50% 50%, rgba(255,200,60,0.3), transparent 65%);
-animation: blobPulse 3s ease-in-out infinite;
-}
-.prize-icon { font-size: 22px; position: relative; z-index: 1; animation: starSpin 8s linear infinite; }
-.prize-badge-text {
-font-size: 8px; font-weight: 900; color: #f5c842;
-letter-spacing: 0.5px; text-align: center;
-position: relative; z-index: 1; line-height: 1.3;
-margin-top: 3px;
-}
+
+
 
 /* Right info on top */
 .ticket-meta-right { flex: 1; text-align: right; padding-top: 4px; }
@@ -250,11 +226,11 @@ animation: fadeUp 0.5s ease 1.05s both;
 /* ── BUY MORE ── */
 .btn-buy {
 display: block; width: 100%;
-background: linear-gradient(135deg, #5236c8, #3a22a0);
-color: #fff;
+background: linear-gradient(135deg, #f11e68,#d85482 );
+color: #35065e;
 font-size: 15px; font-weight: 800; letter-spacing: 1.5px;
 text-transform: uppercase;
-border: none; border-radius: 50px;
+border: none; border-radius: 22px;
 padding: 18px;
 cursor: pointer;
 position: relative; overflow: hidden;
@@ -266,7 +242,7 @@ transition: transform 0.18s ease, filter 0.18s ease;
 content: ‘’;
 position: absolute; top: -50%; left: 0;
 width: 28%; height: 200%;
-background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+background: linear-gradient(90deg, transparent, rgba(255,255,255,1), transparent);
 animation: btnShimmer 2.8s ease-in-out 2.2s infinite;
 }
 .btn-buy:active { transform: scale(0.97); filter: brightness(0.88); }
@@ -372,19 +348,6 @@ body {
 }
 
 </style>
-<script>
-const header = document.getElementById("header");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    header.classList.remove("transparent");
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-    header.classList.add("transparent");
-  }
-});
-</script>
 
 <!-- Screen -->
 <br><br> <br><br><br>
@@ -399,12 +362,12 @@ window.addEventListener("scroll", () => {
       <div class="blob blob-1"></div>
       <div class="blob blob-2"></div>
 
-```
+
   <!-- Top -->
   <div class="ticket-top">
     <div class="prize-badge">
-      <div class="prize-icon">💰</div>
-      <div class="prize-badge-text">₿10M<br>PRIZE</div>
+    
+    
     </div>
     <div class="ticket-meta-right">
       <div class="ticket-no">DC-00646-138936131</div>
@@ -422,13 +385,13 @@ window.addEventListener("scroll", () => {
 
   <!-- Bottom -->
   <div class="ticket-bottom">
-    <div class="prize-currency">Win · Bitcoin Cash Prize</div>
-    <div class="prize-amount">₿10,000,000</div>
+    <div class="prize-currency">Win · Car Prize </div>
+    <div class="prize-amount">Mahindra Thar Roxx</div>
 
     <div class="ticket-details">
       <div class="detail-item">
         <div class="detail-label">Campaign</div>
-        <div class="detail-value">DC-00646</div>
+        <div class="detail-value">DC-00055</div>
       </div>
       <div class="detail-item">
         <div class="detail-label">Draw Date</div>
@@ -453,6 +416,15 @@ window.addEventListener("scroll", () => {
 </div>
  <style>
  
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color:#e8e8e8 ;
+
+}
+
+
+ 
 
 
   .bottom-nav {
@@ -465,9 +437,9 @@ window.addEventListener("scroll", () => {
 
  .nav-wrap {
   display: flex;
-  gap: 14px;
-  padding: 14px 20px;
-  border-radius: 35px;
+  gap:1%;
+  padding: 0.7% 4%;
+  border-radius: 20px;
 
   /* stronger glass */
   background: rgba(255, 255, 255, 0.25);
@@ -477,7 +449,7 @@ window.addEventListener("scroll", () => {
   -webkit-backdrop-filter: blur(20px);
 
   /* stronger glass border */
-  border: 2px solid rgba(213, 206, 206, 0.5);
+  border: 3px solid rgba(213, 206, 206, 0.5);
 
   /* depth shadow */
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
@@ -486,8 +458,8 @@ window.addEventListener("scroll", () => {
 
   /* BUTTON */
   .nav-btn {
-    width: 72px;
-    height: 72px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: #fff;
     border: none;
@@ -498,13 +470,13 @@ window.addEventListener("scroll", () => {
     cursor: pointer;
     transition: 0.25s;
 
-    box-shadow: 0 5px 14px rgba(0,0,0,0.35);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.35);
   }
 
   /* ICON */
   .nav-btn svg {
-    width: 26px;
-    height: 26px;
+    width: 20px;
+    height: 20px;
     stroke: #111;
     fill: none;
     stroke-width: 2;
@@ -516,7 +488,7 @@ window.addEventListener("scroll", () => {
 
   /* TEXT */
   .nav-btn span {
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 500;
     color: #333;
   }
@@ -547,7 +519,7 @@ window.addEventListener("scroll", () => {
   }
 
   /* 📱 MOBILE */
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
     .nav-btn {
       width: 51px;
       height: 53px;
@@ -581,7 +553,6 @@ window.addEventListener("scroll", () => {
     <img style="height: 30px;" src="https://prod-img.thesouledstore.com/static/non-member-logo2.gif?w=100&dpr=2" alt="">
   </button>
    </a>
-
     <!-- HOME -->
    <a style="text-decoration: none;" href="index.html"> <button class="nav-btn active" onclick="setActive(this)">
       <svg viewBox="0 0 24 24">
@@ -636,7 +607,6 @@ window.addEventListener("scroll", () => {
 </div>
 
 <script>
-
  const path = window.location.pathname.split("/").pop();
 
   const navButtons = document.querySelectorAll(".nav-btn");
@@ -655,9 +625,8 @@ window.addEventListener("scroll", () => {
     }
   });
 </script>
-</body>
 
-  
+</body>
 
 
 
