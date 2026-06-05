@@ -1,20 +1,16 @@
-<!DOCTYPE html>
+<body>
+    <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Draw-Tixmo</title>
-</head>
-<body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Draws-Tixmo</title>
 
 
 
 
-
-
-
-
-  <header class="header transparent" id="header">
+<header class="header transparent" id="header">
   <div class="logo"><img style="display: flex;
          width: 80px;
   height: 80px;" src="IMG_2273-removebg-preview.png" alt=""></div>
@@ -32,12 +28,14 @@
     <button class="menu-btn">☰</button>
   </div>
 </header>
+
+
 <style>
 
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  
+
 }
 
 /* HEADER BASE */
@@ -95,7 +93,7 @@ body {
   cursor: pointer;
   border: none;
   background: none;
-
+  margin: right ;
   color: black;
   border-radius: px;
  
@@ -103,6 +101,8 @@ body {
 }
 
 </style>
+
+
 <script>
 const header = document.getElementById("header");
 
@@ -116,7 +116,18 @@ window.addEventListener("scroll", () => {
   }
 });
 </script>
-  <style>
+<style>
+ 
+
+
+ body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color:#e8e8e8 ;
+
+}
+
+
  
 
 
@@ -126,13 +137,14 @@ window.addEventListener("scroll", () => {
     width: 100%;
     display: flex;
     justify-content: center;
+    z-index: 9999;
   }
 
  .nav-wrap {
   display: flex;
-  gap: 14px;
-  padding: 14px 20px;
-  border-radius: 35px;
+  gap:1%;
+  padding: 0.7% 4%;
+  border-radius: 20px;
 
   /* stronger glass */
   background: rgba(255, 255, 255, 0.25);
@@ -142,7 +154,7 @@ window.addEventListener("scroll", () => {
   -webkit-backdrop-filter: blur(20px);
 
   /* stronger glass border */
-  border: 2px solid rgba(213, 206, 206, 0.5);
+  border: 3px solid rgba(213, 206, 206, 0.5);
 
   /* depth shadow */
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
@@ -151,8 +163,8 @@ window.addEventListener("scroll", () => {
 
   /* BUTTON */
   .nav-btn {
-    width: 72px;
-    height: 72px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: #fff;
     border: none;
@@ -163,13 +175,13 @@ window.addEventListener("scroll", () => {
     cursor: pointer;
     transition: 0.25s;
 
-    box-shadow: 0 5px 14px rgba(0,0,0,0.35);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.35);
   }
 
   /* ICON */
   .nav-btn svg {
-    width: 26px;
-    height: 26px;
+    width: 20px;
+    height: 20px;
     stroke: #111;
     fill: none;
     stroke-width: 2;
@@ -181,7 +193,7 @@ window.addEventListener("scroll", () => {
 
   /* TEXT */
   .nav-btn span {
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 500;
     color: #333;
   }
@@ -212,7 +224,7 @@ window.addEventListener("scroll", () => {
   }
 
   /* 📱 MOBILE */
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
     .nav-btn {
       width: 51px;
       height: 53px;
@@ -246,7 +258,6 @@ window.addEventListener("scroll", () => {
     <img style="height: 30px;" src="https://prod-img.thesouledstore.com/static/non-member-logo2.gif?w=100&dpr=2" alt="">
   </button>
    </a>
-
     <!-- HOME -->
    <a style="text-decoration: none;" href="index.html"> <button class="nav-btn active" onclick="setActive(this)">
       <svg viewBox="0 0 24 24">
@@ -299,196 +310,626 @@ window.addEventListener("scroll", () => {
 
   </div>
 </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lottery Draws</title>
 
-<script>
-function setActive(el) {
-  document.querySelectorAll('.nav-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-  el.classList.add('active');
-}
-</script>
-</body>
 <style>
- 
 
-
-  .bottom-nav {
-    position: fixed;
-    bottom: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
- .nav-wrap {
-  display: flex;
-  gap: 14px;
-  padding: 14px 20px;
-  border-radius: 35px;
-
-  /* stronger glass */
-  background: rgba(255, 255, 255, 0.25);
-
-  /* thicker blur */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
-  /* stronger glass border */
-  border: 2px solid rgba(213, 206, 206, 0.5);
-
-  /* depth shadow */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
- 
 
-  /* BUTTON */
-  .nav-btn {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    background: #fff;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.25s;
+body{
+    background:#e8e8e8;
+    padding:20px;
+    display:flex;
+    justify-content:center;
+}
 
-    box-shadow: 0 5px 14px rgba(0,0,0,0.35);
-  }
+.app{
+    width:100%;
+    max-width:400px;
+}
 
-  /* ICON */
-  .nav-btn svg {
-    width: 26px;
-    height: 26px;
-    stroke: #111;
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    margin-bottom: 4px;
-    transition: 0.25s;
-  }
+/* =========================
+   VIDEO
+========================= */
 
-  /* TEXT */
-  .nav-btn span {
-    font-size: 11px;
-    font-weight: 500;
-    color: #333;
-  }
+.video-wrapper{
+    position:relative;
+}
 
-  /* ACTIVE */
-  .nav-btn.active {
-    background: linear-gradient(135deg, #7b2ff7, #a855f7);
-    transform: translateY(-14px);
-    box-shadow: 0 12px 24px rgba(123, 47, 247, 0.8);
-  }
+.video-container{
+    overflow:hidden;
+    border-radius:20px;
+}
 
-  .nav-btn.active svg {
-    stroke: #fff;
-  }
+.video-slider{
+    display:flex;
+    transition:transform .35s ease;
+}
 
-  .nav-btn.active span {
-    color: #fff;
-  }
+.video-slide{
+    min-width:100%;
+}
 
-  /* wheel spin */
-  .nav-btn.active .wheel {
-    animation: spin 0.6s ease;
-  }
+.video-slide iframe{
+    width:100%;
+    height:220px;
+    border:none;
+    display:block;
+    border-radius:20px;
+}
 
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(180deg); }
-  }
+/* =========================
+   ARROWS
+========================= */
 
-  /* 📱 MOBILE */
-  @media (max-width: 480px) {
-    .nav-btn {
-      width: 51px;
-      height: 53px;
-    }
+.arrow{
+    position:absolute;
+    top:110px;
+    transform:translateY(-50%);
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:#000;
+    color:#fff;
+    cursor:pointer;
+    z-index:20;
+    font-size:18px;
+}
+.arrow:hover{
+  background-color: rgb(53, 53, 53);
+  border:2px solid rgb(255, 233, 233);
+}
 
-    .nav-btn svg {
-      width: 24px;
-      height: 24px;
-    }
+.left-arrow{
+    left:10px;
+}
 
-    .nav-btn span {
-      font-size: 10px;
-    }
+.right-arrow{
+    right:10px;
+}
 
-    .nav-wrap {
-      gap: 3px;
-      padding: 12px 14px;
-    }
-  }
+.hide{
+    display:none;
+}
+
+/* =========================
+   PREMIUM BG
+========================= */
+
+.video-info,
+.switch-box,
+.ticket{
+    position:relative;
+    overflow:hidden;
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+    140deg,
+    #1c0e5e,
+    #2e1580,
+    #4a1ea0,
+    #3a1488,
+    #1c0e5e
+    );
+
+    background-size:300% 300%;
+    animation:gradShift 7s ease infinite;
+    color:#fff;
+}
+
+.video-info *,
+.switch-box *,
+.ticket *{
+    position:relative;
+    z-index:10;
+}
+
+.video-info::before,
+.switch-box::before,
+.ticket::before{
+    content:"";
+
+    position:absolute;
+
+    width:200px;
+    height:180px;
+
+    top:-40px;
+    right:-30px;
+
+    border-radius:
+    60% 40% 55% 45% /
+    50% 60% 40% 55%;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(200,80,200,.5),
+    rgba(120,20,180,.2)
+    );
+
+    animation:blobPulse 5s ease-in-out infinite;
+}
+
+.video-info::after,
+.switch-box::after,
+.ticket::after{
+    content:"";
+
+    position:absolute;
+    top:-50%;
+    left:0;
+
+    width:30%;
+    height:200%;
+
+    background:
+    linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.15),
+    transparent
+    );
+
+    animation:
+    shimmer 4s ease-in-out 1.8s infinite;
+}
+
+.blob2{
+    position:absolute;
+
+    width:140px;
+    height:130px;
+
+    left:10px;
+    bottom:10px;
+
+    border-radius:
+    60% 40% 55% 45% /
+    50% 60% 40% 55%;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(255,160,50,.25),
+    transparent 70%
+    );
+
+    animation:
+    blobPulse 5s ease-in-out 2s infinite;
+
+    pointer-events:none;
+}
+
+/* =========================
+   VIDEO INFO
+========================= */
+
+.video-info{
+    margin-top:12px;
+    padding:18px;
+}
+
+.video-info h3{
+    margin-bottom:8px;
+}
+
+.video-info p{
+    color:#fff;
+}
+
+/* =========================
+   SWITCH
+========================= */
+
+.switch-box{
+    margin-top:20px;
+    height:60px;
+}
+
+.switch-row{
+    display:flex;
+    height:100%;
+}
+
+.switch-btn{
+    width:50%;
+    border:none;
+    background:none;
+    color:#fff;
+    font-weight:700;
+    cursor:pointer;
+   
+}
+
+.switch-slider{
+    position:absolute;
+    top:4px;
+    left:4px;
+
+    width:calc(50% - 4px);
+    height:52px;
+
+    border-radius:15px;
+
+  background: linear-gradient(90deg, #ff0059, #de237d, #ed4c7c);
+
+    transition:.3s;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.ticket{
+    padding:18px;
+}
+
+.ticket h3{
+    margin-bottom:10px;
+}
+
+.ticket p{
+    margin:6px 0;
+    color:#fff;
+}
+
+.hidden{
+    display:none;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes gradShift{
+
+0%{
+background-position:0% 50%;
+}
+
+50%{
+background-position:100% 50%;
+}
+
+100%{
+background-position:0% 50%;
+}
+
+}
+
+@keyframes shimmer{
+
+0%{
+transform:
+translateX(-200%)
+rotate(25deg);
+}
+
+100%{
+transform:
+translateX(450%)
+rotate(25deg);
+}
+
+}
+
+@keyframes blobPulse{
+
+0%,100%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.15);
+}
+
+}
 
 </style>
 </head>
-
 <body>
 
-<div class="bottom-nav">
-  <div class="nav-wrap">
+<div class="app">
 
-    <!-- 1 BLANK -->
-    <button class="nav-btn" onclick="setActive(this)"></button>
+    <!-- VIDEO -->
 
-    <!-- HOME -->
-   <a style="text-decoration: none;" href="index.html"> <button class="nav-btn active" onclick="setActive(this)">
-      <svg viewBox="0 0 24 24">
-        <path d="M4 10.5L12 4l8 6.5"></path>
-        <path d="M6 10v10h12V10"></path>
-      </svg>
-      <span>Home</span>
-    </button></a>
+    <div class="video-wrapper">
 
-    <!-- TICKET -->
-    <a style="text-decoration: none;" href="ticket.html"><button class="nav-btn" onclick="setActive(this)">
-      <svg viewBox="0 0 24 24">
-        <path d="M3 9a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4V9z"></path>
-      </svg>
-      <span>Ticket</span>
-    </button></a>
+        <button
+        id="prevBtn"
+        class="arrow left-arrow hide">
+        ❮
+        </button>
 
-    <!-- DRAW -->
-    <a style="text-decoration: none;" href="draw.html"><button class="nav-btn" onclick="setActive(this)">
-      <svg class="wheel" viewBox="0 0 24 24">
-        <circle cx="12" cy="13" r="6"></circle>
-        <path d="M12 7v12"></path>
-        <path d="M6 13h12"></path>
-        <path d="M8.5 9l7 8"></path>
-        <path d="M15.5 9l-7 8"></path>
-        <circle cx="12" cy="13" r="1"></circle>
-        <path d="M12 3l1.5 2h-3z" fill="currentColor" stroke="none"></path>
-      </svg>
-      <span>Draws</span>
-    </button></a>
+        <button
+        id="nextBtn"
+        class="arrow right-arrow">
+        ❯
+        </button>
 
-    <!-- WALLET -->
-    <a style="text-decoration: none;" href="wallet.html"><button class="nav-btn" onclick="setActive(this)">
-      <svg viewBox="0 0 24 24">
-        <rect x="3" y="7" width="18" height="12" rx="3"></rect>
-        <path d="M15 12h4"></path>
-      </svg>
-      <span>Wallet</span>
-    </button></a>
+        <div class="video-container">
 
-    <!-- CART -->
-    <a style="text-decoration: none;" href="cart.html"><button class="nav-btn" onclick="setActive(this)">
-      <svg viewBox="0 0 24 24">
-        <circle cx="9" cy="20" r="1.5"></circle>
-        <circle cx="17" cy="20" r="1.5"></circle>
-        <path d="M4 6h2l2 9h10l2-7H7"></path>
-      </svg>
-      <span>Cart</span>
-    </button></a>
+            <div class="video-slider" id="videoSlider">
 
-  </div>
+                <div class="video-slide">
+                    <iframe src="https://www.youtube.com/embed/7NOSDKb0HlU"></iframe>
+                </div>
+
+                <div class="video-slide">
+                    <iframe src="https://www.youtube.com/embed/5qap5aO4i9A"></iframe>
+                </div>
+
+                <div class="video-slide">
+                    <iframe src="https://www.youtube.com/embed/DXUAyRRkI6k"></iframe>
+                </div>
+
+                <div class="video-slide">
+                    <iframe src="https://www.youtube.com/embed/lTRiuFIWV54"></iframe>
+                </div>
+
+                <div class="video-slide">
+                    <iframe src="https://www.youtube.com/embed/21X5lGlDOfg"></iframe>
+                </div>
+
+                <div class="video-slide">
+                    <iframe src="https://www.youtube.com/embed/7NOSDKb0HlU"></iframe>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="video-info">
+
+            <div class="blob2"></div>
+
+            <h3 id="videoTitle">
+                Live Draw #1
+            </h3>
+
+            <p id="videoDesc">
+                Official live lottery draw session.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- SWITCH -->
+
+    <div style="border: 2px soli;" class="switch-box">
+
+        <div class="blob2"></div>
+
+        <div class="switch-slider" id="switchSlider"></div>
+
+        <div class="switch-row">
+
+            <button
+            class="switch-btn"
+            onclick="showComing()">
+            Coming Draws
+            </button>
+
+            <button
+            class="switch-btn"
+            onclick="showPast()">
+            Past Draws
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- COMING -->
+
+    <div class="cards" id="comingCards">
+
+        <div class="ticket">
+            <div class="blob2"></div>
+            <h3>Mega Draw #2051</h3>
+            <p>Ticket Price: ₹100</p>
+            <p>Prize Pool: ₹5,00,000</p>
+            <p>Draw Date: 20 June 2026</p>
+        </div>
+
+        <div class="ticket">
+            <div class="blob2"></div>
+            <h3>Weekly Draw #2052</h3>
+            <p>Ticket Price: ₹50</p>
+            <p>Prize Pool: ₹2,00,000</p>
+            <p>Draw Date: 25 June 2026</p>
+        </div>
+
+    </div>
+
+    <!-- PAST -->
+
+    <div class="cards hidden" id="pastCards">
+
+        <div class="ticket">
+            <div class="blob2"></div>
+            <h3>Draw #2048</h3>
+            <p>Winner: Rahul Kumar</p>
+            <p>Ticket: LT987654</p>
+            <p>Prize Won: ₹3,50,000</p>
+        </div>
+
+        <div class="ticket">
+            <div class="blob2"></div>
+            <h3>Draw #2047</h3>
+            <p>Winner: Anjali Nair</p>
+            <p>Ticket: LT456123</p>
+            <p>Prize Won: ₹2,00,000</p>
+        </div>
+
+    </div>
+
 </div>
+
+<script>
+
+const videos = [
+{
+title:"Live Draw #1",
+desc:"Official live lottery draw session."
+},
+{
+title:"Live Draw #2",
+desc:"Special jackpot lottery draw."
+},
+{
+title:"Live Draw #3",
+desc:"Weekly winner announcement."
+},
+{
+title:"Live Draw #4",
+desc:"Mega prize lottery event."
+},
+{
+title:"Live Draw #5",
+desc:"Premium ticket draw."
+},
+{
+title:"Live Draw #6",
+desc:"Grand finale lottery draw."
+}
+];
+
+const slider = document.getElementById("videoSlider");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+let current = 0;
+
+function updateVideo(){
+
+slider.style.transform =
+`translateX(-${current * 100}%)`;
+
+document.getElementById("videoTitle").textContent =
+videos[current].title;
+
+document.getElementById("videoDesc").textContent =
+videos[current].desc;
+
+prevBtn.classList.toggle(
+"hide",
+current === 0
+);
+
+nextBtn.classList.toggle(
+"hide",
+current === videos.length - 1
+);
+
+}
+
+function nextVideo(){
+
+if(current < videos.length - 1){
+current++;
+updateVideo();
+}
+
+}
+
+function prevVideo(){
+
+if(current > 0){
+current--;
+updateVideo();
+}
+
+}
+
+nextBtn.onclick = nextVideo;
+prevBtn.onclick = prevVideo;
+
+updateVideo();
+
+/* Swipe */
+
+let startX = 0;
+
+slider.addEventListener("touchstart",e=>{
+startX = e.touches[0].clientX;
+});
+
+slider.addEventListener("touchend",e=>{
+
+let endX =
+e.changedTouches[0].clientX;
+
+let diff = startX - endX;
+
+if(diff > 50){
+nextVideo();
+}
+
+if(diff < -50){
+prevVideo();
+}
+
+});
+
+/* Coming / Past */
+
+const switchSlider =
+document.getElementById("switchSlider");
+
+function showComing(){
+
+switchSlider.style.left = "4px";
+
+document
+.getElementById("comingCards")
+.classList.remove("hidden");
+
+document
+.getElementById("pastCards")
+.classList.add("hidden");
+
+}
+
+function showPast(){
+
+switchSlider.style.left = "50%";
+
+document
+.getElementById("comingCards")
+.classList.add("hidden");
+
+document
+.getElementById("pastCards")
+.classList.remove("hidden");
+
+}
+
+</script>
+
+</body>
+</html>
 
 <script>
  const path = window.location.pathname.split("/").pop();
@@ -509,4 +950,5 @@ function setActive(el) {
     }
   });
 </script>
-</html>
+
+</body>
